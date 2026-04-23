@@ -101,8 +101,8 @@ with tab1:
     display_df["gross_margin"] = display_df["gross_margin"].apply(lambda x: f"{x:.2f}%")
     display_df["net_margin"]   = display_df["net_margin"].apply(lambda x: f"{x:.2f}%")
     display_df.columns = [
-        "Company", "Year", "Revenue (B$)", "Cost (B$)",
-        "Gross Profit (B$)", "Gross Margin", "Net Profit (B$)", "Net Margin"
+        "Company", "Year", "Revenue (B\$)", "Cost (B\$)",
+        "Gross Profit (B\$)", "Gross Margin", "Net Profit (B\$)", "Net Margin"
     ]
     st.dataframe(display_df, use_container_width=True)
 
@@ -158,9 +158,9 @@ with tab1:
     ax2.set_xlabel("Year"); ax2.set_ylabel("Revenue (Billion USD)")
     ax2.set_xticks(years); ax2.legend(); ax2.grid(True, linestyle="--", alpha=0.7)
     for i, year in enumerate(years):
-        ax2.text(year, nike_data["revenue"].iloc[i], f"${nike_data['revenue'].iloc[i]}B",
+        ax2.text(year, nike_data["revenue"].iloc[i], f"\${nike_data['revenue'].iloc[i]}B",
                  ha="center", va="bottom", fontsize=9, color="#1DA1F2")
-        ax2.text(year, lulu_data["revenue"].iloc[i], f"${lulu_data['revenue'].iloc[i]}B",
+        ax2.text(year, lulu_data["revenue"].iloc[i], f"\${lulu_data['revenue'].iloc[i]}B",
                  ha="center", va="bottom", fontsize=9, color="#FF6B6B")
 
     st.pyplot(fig)
@@ -171,7 +171,11 @@ with tab1:
 # ─────────────────────────────────────────────────────────────────────────────
 with tab2:
     st.subheader("Visual Analysis")
-    chart_type = st.selectbox("Select Chart Type:", ["Bar Chart", "Line Chart", "Pie Chart"])
+    if analysis_type == "Single Year Analysis":
+        chart_options = ["Bar Chart", "Pie Chart"]
+    else:
+        chart_options = ["Bar Chart", "Line Chart"]
+    chart_type = st.selectbox("Select Chart Type:", chart_options)
 
     plt.style.use("seaborn-v0_8")
 
@@ -263,7 +267,7 @@ with tab3:
 - **Year:** {selected_year}
 - **Highest Gross Margin:** **{max_gm['company']}** ({max_gm['gross_margin']:.2f}%)
 - **Highest Net Margin:** **{max_nm['company']}** ({max_nm['net_margin']:.2f}%)
-- **Nike Revenue:** ${nike_rev}B &nbsp;|&nbsp; **Lululemon Revenue:** ${lulu_rev}B
+- **Nike Revenue:** \${nike_rev}B &nbsp;|&nbsp; **Lululemon Revenue:** \${lulu_rev}B
         """)
     else:
         st.markdown("""
@@ -303,7 +307,7 @@ with tab4:
     with col_b:
         st.markdown("#### ✔️ Nike's Competitive Advantages")
         st.markdown("""
-- **Scale Advantage:** Nike's 2025 revenue ($53.5B) is over 4.4× larger than Lululemon's ($12.0B).
+- **Scale Advantage:** Nike's 2025 revenue (\$53.5B) is over 4.4× larger than Lululemon's (\$12.0B).
 - **Global Footprint:** Presence in more countries and markets.
 - **Diversified Product Line:** Covers footwear, apparel, and equipment across multiple sports.
 - **Stronger Brand Recognition:** More established brand globally.
