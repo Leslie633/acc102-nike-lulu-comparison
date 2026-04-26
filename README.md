@@ -46,11 +46,11 @@ The dashboard is built using **Streamlit** for the interactive web interface, **
    ```bash
    python -m pip install -r requirements.txt
 2. Run the app:
+   ```bash
+   python -m streamlit run app.py
 
-python -m streamlit run app.py
-
-## 6. Product Link / Demo
-🔗 Live App:
+## 6. Product Link
+🔗 Live App:[https://acc102-nike-lulu-comparison-43dfjfrpcvmxk48dcja8ap.streamlit.app/](https://acc102-nike-lulu-comparison-43dfjfrpcvmxk48dcja8ap.streamlit.app/)
 
 ## 7. Limitations & Next Steps
 - **Limited company scope:** Only Nike and Lululemon are compared; adding Adidas or Under Armour would give a broader industry view.
